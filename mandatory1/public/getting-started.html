@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Getting-startede</title>
+</head>
+<body>
+
+<h1 class="text-center display-4">Getting started</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <!-- sidebar -->
+            <div class="container-fluid sticky-top" id="navsidebar">
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+
+            <p class="lead">Let's go over some basic Nodejs stuf, to get started.</p>
+            <h3 class="bold">LET</h3>
+            <p class="lead">let is now preferred for variable declaration. It's no surprise as it comes as an improvement to var declarations.</p>
+            <h3 class="bold">let is block scoped</h3>
+            <p class="lead">A block is a chunk of code bounded by {}. A block lives in curly braces. Anything within curly braces is a block.</p>
+            <p class="lead">So a variable declared in a block with let  is only available for use within that block. Let me explain this with an example:</p>
+            <pre>
+                <code class="prettyprint">let greeting = "say Hi";
+                    let times = 4;
+
+                    if (times > 3) {
+                        &nbsp;&nbsp;&nbsp;&nbsp;let hello = "say Hello instead";
+                        &nbsp;&nbsp;&nbsp;&nbsp;console.log(hello);// "say Hello instead"
+                    }
+                    console.log(hello) // hello is not defined
+                </code>
+            </pre>
+            <p class="lead">We see that using hello outside its block (the curly braces where it was defined) returns an error. This is because let variables are block scoped .</p>
+            <h3 class="bold">let can be updated but not re-declared.</h3>
+            <p class="lead">Just like var,  a variable declared with let can be updated within its scope. Unlike var, a let variable cannot be re-declared within its scope. So while this will work:</p>
+            <pre>
+                <code class="prettyprint">let greeting = "say Hi";
+                    greeting = "say Hello instead";
+                </code>
+            </pre>
+
+            <h3 class="bold">CONST</h3>
+            <p class="lead">Variables declared with the const maintain constant values. const declarations share some similarities with let declarations.</p>
+            <h3 class="bold">const declarations are block scoped</h3>
+            <p class="lead">Like let declarations, const declarations can only be accessed within the block they were declared.</p>
+            <h3 class="bold">const cannot be updated or re-declared</h3>
+            <p class="lead">This means that the value of a variable declared with const remains the same within its scope. It cannot be updated or re-declared. So if we declare a variable with const, we can neither do this:</p>
+            <pre>
+                <code class="prettyprint">const greeting = "say Hi";
+                    greeting = "say Hello instead";// error: Assignment to constant variable.
+                </code>
+            </pre>
+            <p class="lead">or this:</p>
+            <pre>
+                <code class="prettyprint">const greeting = "say Hi";
+                    const greeting = "say Hello instead";// error: Identifier 'greeting' has already been declared
+                </code>
+            </pre>
+            <br>
+
+            <h2 class="bold">Node js Data types</h2>
+            <p class="lead"><b>Node.js</b> has four core datatypes - <b>number</b>, <b>boolean</b>, <b>string</b> and <b>object</b>.</p>
+            <p class="lead">And two special data types - <b>function</b> and <b>array</b></p>
+
+            <h3 class="bold">Number</h3>
+            <p class="lead">Number in javascript is 64 bits floating point number both positive and negative. Javascript parseInt and parseFloat are used to convert to number, if it fails to convert into a number then it returns NaN(Not a number).</p>
+            <pre>
+                <code class="prettyprint">let x = 10;
+                    console.log(x);
+                </code>
+            </pre>
+
+            <h3 class="bold">Boolean</h3>
+            <p class="lead">The value of a boolean can be either true or false. Boolean function is used to convert any data type to a boolean value. According to the rules, false, 0, NaN, null, undefined, empty string evaluate to false and other values evaluate to true.</p>
+            <pre>
+                <code class="prettyprint">if(NaN){
+                    }else{
+                    &nbsp;&nbsp;&nbsp;&nbsp;console.log("false");
+                    }
+                </code>
+            </pre>
+
+            <h3 class="bold">Strings</h3>
+            <p class="lead">This is a sequence of unicode character. Strings can be wrapped in a single or double quotation marks.
+                Javascript provide many functions to operate on string, like - indexOf(), split(), substr(), length.</p>
+            <pre>
+                <code class="prettyprint">let x = "Welcome to Node.js 101";
+                    console.log(x);
+                </code>
+            </pre>
+
+            <h3 class="bold">Objects</h3>
+            <p class="lead">Objects are an extremely dynamic and flexible data type. Object notation is super readable and compact.</p>
+            <pre>
+                <code class="prettyprint">const employee = {
+                    &nbsp;&nbsp;&nbsp;&nbsp;name = "Frederik",
+                    &nbsp;&nbsp;&nbsp;&nbsp;age = "25",
+                    &nbsp;&nbsp;&nbsp;&nbsp;department = "Software"
+                    };
+                </code>
+            </pre>
+
+            <h3 class="bold">Array</h3>
+            <p class="lead">An array is a collection of key/value pairs. We can store more than one item in only one variable i.e. Array. So array is used when there is requirement to add more items in a single variable.</p>
+            <pre>
+                <code class="prettyprint">const letters = ["a","b","c"];
+                    // show b in the console
+                    console.log(letters[1]) //"b"
+                </code>
+            </pre>
+
+            <p class="lead">Here we have an array with objects</p>
+            <pre>
+                <code class="prettyprint">let plants = [
+                    &nbsp;&nbsp;&nbsp;&nbsp;{
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 1,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: "PITCHER PLANT",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;killsPrYear: "4"
+                    &nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;{
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 2,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: "VENUS FLYTRAP",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;killsPrYear: 10
+                    &nbsp;&nbsp;&nbsp;&nbsp;}
+                ];
+                </code>
+            </pre>
+            <h3 class="bold">Function</h3>
+            <p class="lead">A function is a way of wrapping up a piece of code and giving that chunk a name, so that you can utilize that piece later in just one line of code. In Node.js , functions can even have properties/attributes.</p>
+            <pre>
+                <code class="prettyprint">function msg(name) {
+                    console.log("Hello "+name);
+                    }
+                </code>
+            </pre>
+            <pre>
+                <code class="prettyprint">> msg("Frederik");
+                    Hello Frederik
+                    undefined
+                    >
+                </code>
+            </pre>
+            <p class="lead">In Node.js, we can also assign an anonymous function expression to a variable. Like -</p>
+            <pre>
+                <code class="prettyprint">> let x1 = function() {
+	                console.log('Hello');
+	                return true;
+                    }
+                </code>
+            </pre>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function (){
+        $("#navsidebar").load("navside.html");
+    });
+</script>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

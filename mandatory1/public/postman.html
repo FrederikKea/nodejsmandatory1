@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+<h1 class="text-center display-4">Postman</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 ">
+            <!-- sidebar -->
+            <div class="container-fluid sticky-top" id="navsidebar">
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <p class="lead">Postman is the collaboration platform for API development.
+                Postman simplifies each step of building an API and streamlines collaboration so you
+                can create better APIs—faster.</p>
+            <p class="lead">So we use postman to test our API about burgers. We start with our get request.</p>
+            <img src="img/getburgers.png" class="img-fluid" alt="Responsive image"/>
+            <p class="lead">So as espected we get out data from our in-memory database, back as JSON object</p>
+            <br>
+            <p class="lead">Next we make a post request to add a new burger to our database</p>
+            <img src="img/postburgers.png" class="img-fluid" alt="Responsive image"/>
+            <p class="lead">So we can see we added our new burger to the database, we get a response back with the burger we added.
+                so if we make a new get request we will see the new burger added with an incrementet id also.</p>
+            <br>
+            <p class="lead">Let's say right after we added the burger, its not the correct burger.
+                Then we can use patch to change the burger, in the url we choose witch burger we want to change.</p>
+            <img src="img/patchburgers.png" class="img-fluid" alt="Responsive image"/>
+            <p class="lead">we just need to use the same key, like "name" and "price" in this case and just change the value
+                we want to change.</p>
+            <br>
+            <p class="lead">The last request is our delete request. Where you just delete the burger on the id,
+                through the url paramenter </p>
+            <img src="img/deleteburgers.png" class="img-fluid" alt="Responsive image"/>
+            <p class="lead">So again if we run the get request, we will se that one burger is delete depending on the id.
+                In this case, burger 1 will be deleted.</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function (){
+        $("#navsidebar").load("navside.html");
+    });
+</script>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

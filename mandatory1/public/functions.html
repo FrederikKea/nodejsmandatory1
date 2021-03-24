@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Functions</title>
+</head>
+<body>
+
+<h1 class="text-center display-4">Functions callback and map</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 ">
+            <!-- sidebar -->
+            <div class="container-fluid sticky-top" id="navsidebar">
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h1 class="text-center display-4">Functions callback and map</h1>
+            <h2>What is callback?</h2>
+            <p class="lead">Callback is an asynchronous equivalent for a function. A callback function is called
+                at the completion of a given task. Node makes heavy use of callbacks. All the APIs of Node are written
+                in such a way that they support callbacks.</p>
+
+            <p class="lead">For example, a function to read a file may start reading file and return the control to the execution
+                environment immediately so that the next instruction can be executed. Once file I/O is complete,
+                it will call the callback function while passing the callback function, the content of the file as
+                a parameter. So there is no blocking or wait for File I/O. This makes Node.js highly scalable,
+                as it can process a high number of requests without waiting for any function to return results.</p>
+            <p class="lead">let's look at a given example, a blocking vs a non-blocking.</p>
+            <img src="img/blocking_vs_Non_blocking_.png" class="img-fluid" alt="Responsive image"/>
+            <br>
+            <p class="lead">So the code on each side does exactly the same, fetching tow users and then calculate the
+                sum of two numbers.
+                The diffence is that on the right side we have blocking code which means that when we are fetching the
+                first user from the database wait for the input and print it out. On the right side we use non-blocking code
+                with the callback function, which means that we start fetching the first user and return immediately to the next
+                instruction. So we in the mean time can execute some other code. This way is way faster as we shown on the picture.
+                You can read more about callback functions <a href="https://nodejs.org/en/knowledge/getting-started/control-flow/what-are-callbacks/">here</a>.</p>
+            <br>
+
+            <h2>What is a map function?</h2>
+            <p class="lead">The <b>map()</b> method creats a new array populated with the results of calling a provided
+                function on every element in the calling array</p>
+            <pre>
+                <code class="prettyprint">const arr = [1, 4, 9, 16];
+                    // pass a function to map
+                    const map1 = arr.map(x => x * 2);
+
+                    console.log(map1);
+                    // expected output: Array [2, 8, 18, 32]
+                </code>
+            </pre>
+            <h4>Syntax</h4>
+            <pre>
+                <code class="prettyprint">let newArray = arr.map(callback(currentValue[, index[, array]]) {
+                    // return element for newArray, after executing something
+                    }[, thisArg]);
+                </code>
+            </pre>
+            <p class="lead"><b>callback</b></p>
+            <p class="lead">Function that is called for every element of arr. Each time callback executes, the returned
+                value is added to newArray.</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function (){
+        $("#navsidebar").load("navside.html");
+    });
+</script>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

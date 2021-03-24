@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+
+</head>
+<body>
+
+
+
+<h1 class="text-center display-4">Welcome to my Nodejs notes</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 ">
+            <!-- sidebar -->
+            <div class="container-fluid sticky-top" id="navsidebar">
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <p class="lead">So here is all my great notes about Nodejs and how you get started, with your own Nodejs Express project</p>
+            <br>
+            <h3 class="bg-info" >Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an
+                event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js'
+                package ecosystem, npm is the largest ecosystem of open source libraries in the world.</h3>
+            <br>
+            <p class="lead">Take a look around the page to get more knowledge on the topic. I suggest that you start with the
+                "Getting Started" in the nav</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    //loads in the nav sidebar, so we dont have to hard code it on every page
+    $(function (){
+        $("#navsidebar").load("navside.html");
+    });
+</script>
+
+</body>
+</html>

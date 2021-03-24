@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>crud api</title>
+</head>
+<body>
+
+<h1 class="text-center display-4">create CRUD API with Nodejs</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <!-- sidebar -->
+            <div class="container-fluid sticky-top" id="navsidebar">
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <p class="lead">Now we have installed our dependencies and we have load in the express module in our app.js</p>
+            <p class="lead">So now we can create web server using express now app.js file look like</p>
+            <pre>
+                <code class="prettyprint">const express = require("express");
+                    // create express app
+                    const app = express();
+
+                    // define a root/default route
+                    app.get('/', (req, res) => {
+                    &nbsp;&nbsp;&nbsp;&nbsp;res.send({"message": "Hello World});
+                    });
+
+                    // listen for requests
+                    app.listen(8080)
+                </code>
+            </pre>
+            <p class="lead">Now run the server and go to <a href="http://localhost:8080">http://localhost:8080</a> to access the route.</p>
+            <p class="lead">Response will be like as below</p>
+            <img src="img/localhost8080helloworld.png" height="182" width="556"/>
+
+            <h3>Now lets create a CRUD API with a simple in-memory store database represented as an object:</h3>
+
+            <pre>
+                <code class="prettyprint">let burgers = [
+                        &nbsp;&nbsp;&nbsp;&nbsp;{
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 1,
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: "Fully loaded",
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;price: 99
+                        &nbsp;&nbsp;&nbsp;&nbsp;},
+                        &nbsp;&nbsp;&nbsp;&nbsp;{
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 2,
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: "Pablo",
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;price: 89
+                        &nbsp;&nbsp;&nbsp;&nbsp;}
+                    ];
+                </code>
+            </pre>
+
+            <p class="lead">Then we make a variable so we can make some sort of autoincrement for our object id in the array</p>
+            <pre>
+                <code class="prettyprint">// to make some sort of autoincrement starting by 3 because we have 2 objects in the array
+                    let id = burgers.length;
+                </code>
+            </pre>
+
+            <p class="lead">Like our first eksample we make the route for our get request to get all our burger objects in the Database(our in-memory array database</p>
+            <pre>
+                <code class="prettyprint">app.get("/burgers", (req, res) => {
+                        &nbsp;&nbsp;&nbsp;&nbsp;res.send({data: burgers})
+                    })
+                </code>
+            </pre>
+
+            <p class="lead">//Here we can make a get request by id in the url, we use the find() method because it returns the value
+                of the first element in the provided array that satisfies the provided id from the url.
+                If no values satisfy the testing function, undefined is returned.</p>
+            <pre>
+                <code class="prettyprint">app.get("/burgers/:id", (req, res) => {
+                        &nbsp;&nbsp;&nbsp;&nbsp;const findBurger = burgers.find(burger => burger.id === req.params.id)
+                        &nbsp;&nbsp;&nbsp;&nbsp;res.send({data: findBurger})
+                    })
+                </code>
+            </pre>
+
+            <pre>
+                <code class="prettyprint">app.use(express.json());
+                </code>
+            </pre>
+            <p class="lead">Here is the explanation that should clear doubts on express.json() and express.urlencoded()
+                and the use of body-parser.</p>
+
+            <ol class="lead">
+                <li>What is Middleware? It is those methods/functions/operations that are called BETWEEN processing the
+                    Request and sending the Response in your application method.</li>
+                <li>When talking about express.json() and express.urlencoded() think specifically about POST requests
+                    (i.e. the .post request object) and PUT Requests (i.e. the .put request object)</li>
+                <li>You DO NOT NEED express.json() and express.urlencoded() for GET Requests or DELETE Requests.</li>
+                <li>You NEED express.json() and express.urlencoded() for POST and PUT requests, because in both these
+                    requests you are sending data (in the form of some data object) to the server and you are asking the
+                    server to accept or store that data (object), which is enclosed in the body (i.e. req.body) of that (POST or PUT) Request</li>
+                <li>Express provides you with middleware to deal with the (incoming) data (object) in the body of the request.</li>
+                <ol type="a">
+                    <li >
+                        express.json() is a method inbuilt in express to recognize the incoming Request Object as a JSON Object.
+                        This method is called as a middleware in your application using the code: app.use(express.json());
+                    </li>
+                    <li>express.urlencoded() is a method inbuilt in express to recognize the incoming Request Object as strings or arrays.
+                        This method is called as a middleware in your application using the code: app.use(express.urlencoded());</li>
+                </ol>
+                <li>ALTERNATIVELY, I recommend using body-parser (it is an NPM package) to do the same thing. It is developed by the same
+                    peeps who built express and is designed to work with express. body-parser used to be part of express.
+                    Think of body-parser specifically for POST Requests (i.e. the .post request object) and/or PUT Requests (i.e. the .put request object).</li>
+            </ol>
+
+            <p class="lead">Then we add our post request, so we can add new burgers to the menu.
+                first we get the burger from the request in Postman, will come back to postman later.
+                Then we get our id variable from earlier, and count it up before we save is to the newburger.id
+            then we push the newBurger variable to our array. Last we get a responds with the newburger we created</p>
+            <pre>
+                <code class="prettyprint">app.post("/burgers", (req, res) => {
+                        &nbsp;&nbsp;&nbsp;&nbsp;// 1. get burger
+                        &nbsp;&nbsp;&nbsp;&nbsp;const newBurger = req.body;
+                        &nbsp;&nbsp;&nbsp;&nbsp;// 2. add id && we use prefix ++id which will count it 1 up before it saves it
+                        &nbsp;&nbsp;&nbsp;&nbsp;newBurger.id = ++id
+                        &nbsp;&nbsp;&nbsp;&nbsp;// 3. add to array
+                        &nbsp;&nbsp;&nbsp;&nbsp;burgers.push(newBurger)
+                        &nbsp;&nbsp;&nbsp;&nbsp;// 4. send the data back
+                        &nbsp;&nbsp;&nbsp;&nbsp;res.send({data: newBurger})
+                    })
+
+                </code>
+            </pre>
+
+            <h3>First lets see whats the difference between PUT and PATCH</h3>
+            <br>
+            <h4>What is PUT?</h4>
+            <p class="lead">PUT is a method of modifying resource where the client sends data that updates the entire resource.
+                It is used to set an entity’s information completely. PUT is similar to POST in that it can create resources,
+                but it does so when there is a defined URI. PUT overwrites the entire entity if it already exists, and creates
+                a new resource if it doesn’t exist.</p>
+            <p class="lead">For example, when you want to change the first name of a person in a database, you need to send the entire
+                resource when making a PUT request.</p>
+
+            <h4>What is PATCH?</h4>
+            <p class="lead">Unlike PUT, PATCH applies a partial update to the resource.</p>
+            <p class="lead">
+                This means that you are only required to send the data that you want to update, and it won’t affect or change
+                anything else. So if you want to update the first name on a database, you will only be required to send the
+                first parameter; the first name.</p>
+            <br>
+            <p class="lead">So in this case we use PATCH so we update one parameter if we want that.</p>
+            <p class="lead">First we use the map() method that creats a new array populated with the results of a if statement
+                so if the burger id is the same as the one from the request. We will change that burger with the spread operater.
+                If the burger is not equal to the request the it just gets return to the new array.
+                The spread </p>
+            <pre>
+                <code class="prettyprint">
+                    app.patch("/burgers/:id", (req, res) => {
+                        &nbsp;&nbsp;&nbsp;&nbsp;burgers = burgers.map(burger => {
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (burger.id === Number(req.params.id)) {
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;burgerUpdated = true;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//change the burger, we use the spread operater
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {...burger, ...req.body, id: plant.id}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return burger;
+                        &nbsp;&nbsp;&nbsp;&nbsp;})
+                        &nbsp;&nbsp;&nbsp;&nbsp;res.send({data: burgerUpdated });
+                    })
+                </code>
+            </pre>
+
+            <p class="lead">Here we have the delete request, which take the id from the url. Then we use the filter method
+            that creates a new array with all elements that pass the test implemented, like here if the burger.id is not equal
+                to the url id it passes the test. And if the id's are equal it filter that object out </p>
+            <pre>
+                <code class="prettyprint">
+                    app.delete("/burgers/:id", (req, res) => {
+                        &nbsp;&nbsp;&nbsp;&nbsp;const id = req.params.id;
+                        &nbsp;&nbsp;&nbsp;&nbsp;burgers = burgers.filter(burger => burger.id !== id);
+                        &nbsp;&nbsp;&nbsp;&nbsp;res.send({ })
+                    })
+                </code>
+            </pre>
+
+            <p class="lead">See the whole code in one file <a href="appjs">app.js</a></p>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function (){
+        $("#navsidebar").load("navside.html");
+    });
+</script>
+
+<!--code prettify -->
+<!--https://github.com/googlearchive/code-prettify -->
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

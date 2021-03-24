@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Nodejs Setup</title>
+</head>
+<body>
+
+<h1 class="text-center display-4">Nodejs Setup</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 ">
+            <!-- sidebar -->
+            <div class="container-fluid sticky-top" id="navsidebar">
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h3 class="bold">How to setup your Node.js express project</h3>
+            <p class="lead">Find your favorit IDE to start your next coding project</p>
+            <p class="lead">Create a folder, in that folder make a JavaScript file called <b>app.js</b></p>
+            <p class="lead">Next we create a package.json file in that file make sure to make {} otherwise it will not be recognize as json file</p>
+            <p class="lead">Next you go to your terminal either in your IDE or open it up on your computer.</p>
+            <p class="lead">Go to your folder where you have your app.js see terminal commands <a href="/terminalCommands">here</a></href></p>
+            <p class="lead">Now we have to install a npm package from Node.js open source library</p>
+            <p class="lead">In our json file we put in our dependencies</p>
+            <pre>
+                <code class="prettyprint">{
+                    &nbsp;&nbsp;"dependencies":{
+                        &nbsp;&nbsp;&nbsp;&nbsp;"express":"^4.17.1",
+                        &nbsp;&nbsp;&nbsp;&nbsp;}
+                    }
+                </code>
+            </pre>
+            <p class="lead"> Now run the command "npm install" </p>
+            <p class="lead">This will install the express package, and create a folder node_modules and package-lock.json TODO</p>
+            <p class="lead">We head back to our app.js and import the express package like this </p>
+            <pre>
+                <code class="prettyprint">const express = require("express");
+                    const app = express();
+                </code>
+            </pre>
+            <p class="lead">We're calling require which is going to load in the express module we downloaded before thoughe npm.
+                So now this is going to work for any node script. TODO</p>
+            <p class="lead">Visit <a href="https://www.npmjs.com">www.npmjs.com</a> This is going to allow us to take advantage of all of those
+                awesome NPM modules from right inside of our node application. There are an endless amount of awesome useful NPM
+                packages that we can install so we don't have to recreate the wheel from scratch.
+            </p>
+            <p class="lead">Now we are ready to start creating our first crud api application</p>
+            <p class="lead">But before we do that lets install one more npm module called <b>nodemon</b></p>
+            <p class="lead">Nodemon is a tool that helps develop node.js based applications by automatically restarting the node
+                application when file changes in the directory are detected</p>
+            <p>We install nodemon through the terminal and install it the recommened way</p>
+            <pre>
+                <code class="prettyprint">npm install -g nodemon
+                </code>
+            </pre>
+            <p class="lead">And nodemon will be installed globally to our system path.</p>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function (){
+        $("#navsidebar").load("navside.html");
+    });
+</script>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

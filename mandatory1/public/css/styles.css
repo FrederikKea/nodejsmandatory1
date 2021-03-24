@@ -1,0 +1,28 @@
+body{
+    /*top, right, bottom, left */
+   margin: 2% 0px 2% 0px;
+
+}
+
+h1 {
+    padding-bottom: 2%;
+}
+
+#navsidebar {
+    /*margin-left: -220px;*/
+
+}
+
+code {
+    font-size: 120%;
+}
+
+pre code {
+    background-color: #eee;
+    border: 1px solid #999;
+    display: block;
+    padding: 10px;
+    text-align: left;
+    white-space: pre-line;
+    line-height: 140%;
+}

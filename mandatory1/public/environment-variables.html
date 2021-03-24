@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Environment variables</title>
+</head>
+<body>
+
+<h1 class="text-center display-4">Environment variables</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 ">
+            <!-- sidebar -->
+            <div class="container-fluid sticky-top" id="navsidebar">
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+
+            <p class="lead">Environment variables are very fundamental part of developing with Node.js
+                or any server side language. They always contains very sensitive data and doesn't meant to be shared
+                with outside world. You have to make sure that your server is properly configured to make use of correct
+                variables for both development and production environments. Any mistake can lead your server to crash.
+            </p>
+            <p class="lead">Working with environment variable in Node.js is very easy and simple. I will walk you
+                through the different approaches of using environment variables in Node.js.</p>
+            </p>
+
+            <h2>Using package.json</h2>
+            <p class="lead">You are thinking how? But you can pass key=value pairs directly in the npm scripts in the package.json.
+                This is a valid a place to put environment variable <b>but not a secure</b> place.</p>
+
+            <p class="lead">Below is an example of setting Node.js execution environment to production on the npm's start script.</p>
+            <p class="lead"><b>Note:</b> This will probably won't work with Windows OS</p>
+            <pre>
+                <code class="prettyprint">"scripts": {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"start-dev": "PORT=3000 nodemon app.js"
+                    }
+                </code>
+            </pre>
+            <p class="lead">So now you can run the environment script with this command <b>"npm run start-dev"</b>
+                in this case it will run the application on port 3000 if its available and run the app.js through nodemon</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function (){
+        $("#navsidebar").load("navside.html");
+    });
+</script>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

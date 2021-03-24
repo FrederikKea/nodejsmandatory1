@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <meta charset="UTF-8">
+    <title>app.js</title>
+</head>
+<body>
+
+<h1 class="text-center display-4">app.js file</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-8">
+            <pre>
+                <code class="prettyprint">const express = require("express");
+                    // create express app
+                    const app = express();
+
+                    app.use(express.json());
+
+                    let burgers = [
+                        &nbsp;&nbsp;&nbsp;&nbsp;{
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 1,
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: "Fully loaded",
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;price: 99
+                        &nbsp;&nbsp;&nbsp;&nbsp;},
+                        &nbsp;&nbsp;&nbsp;&nbsp;{
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 2,
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: "Pablo",
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;price: 89
+                        &nbsp;&nbsp;&nbsp;&nbsp;}
+                    ];
+
+                // to make some sort of autoincrement starting by 3 because we have 2 objects in the array
+                    let id = burgers.length;
+
+                    app.get("/burgers", (req, res) => {
+                        &nbsp;&nbsp;&nbsp;&nbsp;res.send({data: burgers})
+                    })
+
+                    app.get("/burgers/:id", (req, res) => {
+                        &nbsp;&nbsp;&nbsp;&nbsp;const findBurger = burgers.find(burger => burger.id === req.params.id)
+                        &nbsp;&nbsp;&nbsp;&nbsp;res.send({data: findBurger})
+                    })
+
+                    app.post("/burgers", (req, res) => {
+                        &nbsp;&nbsp;&nbsp;&nbsp;// 1. get burger
+                        &nbsp;&nbsp;&nbsp;&nbsp;const newBurger = req.body;
+                        &nbsp;&nbsp;&nbsp;&nbsp;// 2. add id && we use prefix ++id which will count it 1 up before it saves it
+                        &nbsp;&nbsp;&nbsp;&nbsp;newBurger.id = ++id
+                        &nbsp;&nbsp;&nbsp;&nbsp;// 3. add to array
+                        &nbsp;&nbsp;&nbsp;&nbsp;burgers.push(newBurger)
+                        &nbsp;&nbsp;&nbsp;&nbsp;// 4. send the data back
+                        &nbsp;&nbsp;&nbsp;&nbsp;res.send({data: newBurger})
+                    })
+
+                    app.patch("/burgers/:id", (req, res) => {
+                        &nbsp;&nbsp;&nbsp;&nbsp;burgers = burgers.map(burger => {
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (burger.id === Number(req.params.id)) {
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;burgerUpdated = true;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//change the burger, we use the spread operater
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {...burger, ...req.body, id: burger.id}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return burger;
+                        &nbsp;&nbsp;&nbsp;&nbsp;})
+                        &nbsp;&nbsp;&nbsp;&nbsp;res.send({data: burgerUpdated });
+                    })
+
+                    app.delete("/burgers/:id", (req, res) => {
+                        &nbsp;&nbsp;&nbsp;&nbsp;const id = req.params.id;
+                        &nbsp;&nbsp;&nbsp;&nbsp;burgers = burgers.filter(burger => burger.id !== id);
+                        &nbsp;&nbsp;&nbsp;&nbsp;res.send({ })
+                    })
+
+                    // listen for requests
+                    app.listen(8080)
+                </code>
+            </pre>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

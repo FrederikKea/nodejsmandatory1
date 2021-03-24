@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+</head>
+<body>
+
+<h1 class="text-center display-4">jQuery</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <!-- sidebar -->
+            <div class="container-fluid sticky-top" id="navsidebar">
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+
+            <p class="lead">jQuery is a JavaScript Library.</p>
+            <p class="lead">jQuery greatly simplifies JavaScript programming.</p>
+            <p class="lead">jQuery is easy to learn</p>
+
+            <h2>What is jQuery?</h2>
+            <p class="lead">jQuery is a lightweight, "write less, do more", JavaScript library.</p>
+            <p class="lead">The purpose of jQuery is to make it much easier to use JavaScript on your website.</p>
+            <p class="lead">jQuery takes a lot of common tasks that require many lines of JavaScript code to accomplish,
+                and wraps them into methods that you can call with a single line of code.</p>
+            <p class="lead">jQuery also simplifies a lot of the complicated things from JavaScript, like AJAX calls and DOM manipulation.</p>
+            <p class="lead">The jQuery library contains the following features:</p>
+            <ul>
+                <li>HTML/DOM manipulation</li>
+                <li>CSS manipulation</li>
+                <li>HTML event methods</li>
+                <li>Effects and animations</li>
+                <li>AJAX</li>
+                <li>Utilities</li>
+            </ul>
+            <p class="lead "><b>Tip:</b> In addition, jQuery has plugins for almost any task out there.</p>
+            <br>
+
+            <h2>Adding jQuery to our web pages</h2>
+            <p class="lead">There are several ways to start using jQuery on your web site. You can:</p>
+            <ul>
+                <li>Download the jQuery library from <a href="jQuery.com">jQuery.com</a></li>
+                <li>Include jQuery from a CDN(content delivery network),
+                    like <a href="https://developers.google.com/speed/libraries#jquery">Google</a></li>
+
+            </ul>
+            <p class="lead">The jQuery library is a single JavaScript file, and you reference it with the HTML
+                &lt;script&gt; tag (notice that the &lt;script&gt; tag should be inside the &lt;head&gt; section):</p>
+
+            <h2>jQuery CDN</h2>
+            <p class="lead">On my web page we use the CDN, because we don't want to download it</p>
+            <p class="lead">Google is an example of someone who host jQuery:</p>
+            <pre>
+                <code class="prettyprint">&lt;head&gt;
+                    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">&lt;script&gt;
+                    &lt;head&gt;
+                </code>
+            </pre>
+            <h2>So now lets try use some jQuery</h2>
+            <p class="lead">We have added this jQuery on this site</p>
+            <pre>
+                <code class="prettyprint">&lt;script&gt;
+                    $(document).ready(function(){
+                        &nbsp;&nbsp;&nbsp;&nbsp;$("p").click(function(){
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(this).hide();
+                            &nbsp;&nbsp;&nbsp;&nbsp;});
+                        });
+                    &lt;script&gt;
+                </code>
+            </pre>
+            <p class="lead">This allows us to click on all of our p tag and the text will disappear.</p>
+            <p class="lead">Give it a try! Click on me!</p>
+            <p class="lead">Reload the page to get the content back</p>
+
+            <h2>The only thing we have use jQuery for on this page is the nav sidebar</h2>
+            <p class="lead">The reason why we use it on the nav sidebar is to load the sidebars html code in on every other page,
+                so we don't have to hardcode it on each side.</p>
+            <p class="lead">So to do this, we include the jQuery CDN in our header like shown.</p>
+            <p class="lead">Then we make a navside.html with the code we want to load in on each other page</p>
+            <p class="lead">Example:</p>
+            <pre>
+                <code class="prettyprint">&lt;nav class="nav flex-column">
+                         &nbsp;&nbsp;&nbsp;&nbsp; &lt;a class="nav-link" href="/">#&lt;/a&gt;
+                         &nbsp;&nbsp;&nbsp;&nbsp; &lt;a class="nav-link" href="/gettingStarted">Getting Started &lt;/a&gt;
+                         &nbsp;&nbsp;&nbsp;&nbsp; &lt;a class="nav-link" href="/nodejsSetup">NodeJS Setup&lt;/a&gt;
+                         &lt;/nav&gt;
+                </code>
+            </pre>
+
+            <p class="lead">Then you go to a new html page where you want to load in your nav sidebar</p>
+            <p class="lead">Then we put a jQuery code on the html page we so we can load in the other html code</p>
+            <pre>
+                <code class="prettyprint">&lt;script type="text/javascript">
+                        &nbsp;&nbsp;&nbsp;&nbsp;$(function (){
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$("#navsidebar").load("navside.html");
+                        &nbsp;&nbsp;&nbsp;&nbsp;});
+                    &lt;script&gt;
+                </code>
+            </pre>
+            <p class="lead">Last you make the reference to the "#navsidebar" and you do that in a div tag with id="navsidebar"</p>
+            <pre>
+                <code class="prettyprint">&lt;div class="container-fluid sticky-top" id="navsidebar">
+
+                    &lt;/div&gt;
+                </code>
+            </pre>
+            <p class="lead">And you make that div tag with the id tag on the html page where you want it to appear</p>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $("p").click(function(){
+            $(this).hide();
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(function (){
+        $("#navsidebar").load("navside.html");
+    });
+</script>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

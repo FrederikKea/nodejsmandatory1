@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Terminal commands</title>
+</head>
+<body>
+
+<h1 class="text-center display-4">Terminal Commands</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 ">
+            <!-- sidebar -->
+            <div class="container-fluid sticky-top" id="navsidebar">
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h3>Basic terminal commands</h3>
+            <!--https://www.makeuseof.com/tag/mac-terminal-commands-cheat-sheet/ -->
+            <table class="table table-striped">
+                <tr>
+                    <th>Command</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>/ (Forward Slash)</td>
+                    <td>Top level directory</td>
+                </tr>
+                <tr>
+                    <td>. (Single Period)</td>
+                    <td>Current directory</td>
+                </tr>
+                <tr>
+                    <td>..(Double Period)</td>
+                    <td>Parent directory</td>
+                </tr>
+                <tr>
+                    <td>~ (Tilde)</td>
+                    <td>Home directory</td>
+                </tr>
+                <tr>
+                    <td>sudo [command]</td>
+                    <td>Run command with the security provileges of the super user (<b>s</b>uper <b>u</b>ser <b>do</b>)</td>
+                </tr>
+                <tr>
+                    <td><b>Change Directory</b></td>
+                    <td><div style="display:none;">CREDITS_HERE</div></td>
+                </tr>
+                <tr>
+                    <td>cd</td>
+                    <td>Home directory</td>
+                </tr>
+                <tr>
+                    <td>cd [folder]</td>
+                    <td>Change directory, e.g. cd Documents</td>
+                </tr>
+                <tr>
+                    <td>pwd</td>
+                    <td>Show your working directory</td>
+                </tr>
+                <tr>
+                    <td>cd..</td>
+                    <td>Move up to the parent directory</td>
+                </tr>
+                <tr>
+                    <td><b>List Directory Contents</b></td>
+                    <td><div style="display:none;">CREDITS_HERE</div></td>
+                </tr>
+                <tr>
+                    <td>ls</td>
+                    <td>Display the name of files and subdirectories in the directory</td>
+                </tr>
+                <tr>
+                    <td>ls -a</td>
+                    <td>List all entries including those with .(period) and ..(double period)</td>
+                </tr>
+                <tr>
+                    <td><b>File and Directory Management</b></td>
+                    <td><div style="display:none;">CREDITS_HERE</div></td>
+                </tr>
+                <tr>
+                    <td>mkdir &lt;dir&gt; </td>
+                    <td>Create new folder named &lt;dir&gt;</td>
+                </tr>
+                <tr>
+                    <td>mkdir &lt;dir1&gt; &lt;dir2&gt; &lt;dir3&gt;</td>
+                    <td>Create several folders at once</td>
+                </tr>
+                <tr>
+                    <td>rmdir &lt;dir&gt;</td>
+                    <td>Delete a folder (only workds on empty folders)</td>
+                </tr>
+                <tr>
+                    <td>rm -R &lt;dir&gt;</td>
+                    <td>Delete a folder and its contens</td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <h3>Nodejs terminal commands</h3>
+            <table class="table table-striped">
+                <tr>
+                    <th>Command</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>npm install</td>
+                    <td>install your dependencies you have listed in package.json</td>
+                </tr>
+                <tr>
+                    <td>npm install [package]</td>
+                    <td>install that package to your package.json file</td>
+                </tr>
+                <tr>
+                    <td>npm i [package]</td>
+                    <td>install that package to your package.json file</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + C</td>
+                    <td>Kill whatever you're running</td>
+                </tr>
+                <!--maybe show npm init-->
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function (){
+        $("#navsidebar").load("navside.html");
+    });
+</script>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>
